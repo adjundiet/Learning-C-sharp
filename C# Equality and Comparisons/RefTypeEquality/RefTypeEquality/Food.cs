@@ -9,6 +9,21 @@ namespace Pluralsight.CSharpEquality.RefTypes.RefTypeEquality
 
 	public class Food
 	{
+	    public static bool operator ==(Food leftFood, Food rightFood)
+	    {
+	        if (leftFood != null && rightFood != null)
+	            return leftFood.Equals(rightFood);
+	        else return false;
+
+            // OR like this... because static method object.Equals() checks foe null
+            //return object.Equals(leftFood, rightFood);
+        }
+
+        public static bool operator !=(Food leftFood, Food rightFood)
+	    {
+	        return !(leftFood == rightFood);
+	    }
+
 	    public override bool Equals(object obj)
 	    {
 	        if (obj == null)
@@ -23,8 +38,13 @@ namespace Pluralsight.CSharpEquality.RefTypes.RefTypeEquality
 
 	    }
 
-	    string _name;
-		FoodGroup _group;
+	    public override int GetHashCode()
+	    {
+	        return this._name.GetHashCode() ^ this._group.GetHashCode();
+	    }
+
+	    private string _name;
+        private FoodGroup _group;
 
 		public string Name { get { return _name; } }
         public FoodGroup Group { get { return _group; } }

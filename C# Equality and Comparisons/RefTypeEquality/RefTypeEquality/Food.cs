@@ -11,11 +11,13 @@ namespace Pluralsight.CSharpEquality.RefTypes.RefTypeEquality
 	{
 	    public static bool operator ==(Food leftFood, Food rightFood)
 	    {
-	        if (leftFood != null && rightFood != null)
-	            return leftFood.Equals(rightFood);
-	        else return false;
-
-            // OR like this... because static method object.Equals() checks foe null
+            if (leftFood is null || rightFood is null)
+	        {
+	            return false;
+            }
+	        else return leftFood.Equals(rightFood);
+            
+            //OR like this...because static method object.Equals() checks for null
             //return object.Equals(leftFood, rightFood);
         }
 

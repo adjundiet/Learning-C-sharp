@@ -20,8 +20,9 @@ namespace Pluralsight.CSharpEquality.RefTypes.RefTypeEquality
 			DisplayWhetherEqual(stewedApple, stewedApple2);
 			DisplayWhetherEqual(apple, apple2);
 			DisplayWhetherEqual(apple, apple);
+		    DisplayWhetherEqual(apple, null);
 
-		}
+        }
 
 		static void DisplayWhetherEqual(Food food1, Food food2)
 		{
